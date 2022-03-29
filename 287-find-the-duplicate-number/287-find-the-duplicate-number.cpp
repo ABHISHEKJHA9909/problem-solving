@@ -2,9 +2,10 @@ class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
         for(int &i:nums){
-            if(nums[abs(i)-1]<0)
+            int j=abs(i);
+            if(nums[j-1]<0)
                 return abs(i);
-            nums[abs(i)-1]=-nums[abs(i)-1];
+            nums[j-1]=-nums[j-1];
         }
         return -1;
     }
