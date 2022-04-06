@@ -20,27 +20,18 @@ public:
         inorder(root->right);
     }
     
-    TreeNode* balanceBST(TreeNode* ru) {
-        if(ru==NULL)
+    TreeNode* rec(int ll,int rr){
+        if(ll>rr)
             return NULL;
-        arr.clear();
-        inorder(ru);
-        int i=arr.size()/2;
+        int i=(ll+rr+1)/2;
         TreeNode *root=new TreeNode(arr[i]);
-        int l=i-1;
-        TreeNode* copy=root;
-        while(l>=0){
-            copy->left=new TreeNode(arr[l--]);
-            copy=copy->left;
-        }
-        copy=root;
-        int r=i+1;
-        while(r<arr.size()){
-            copy->right=new TreeNode(arr[r++]);
-            copy=copy->right;
-        }
-        root->right=balanceBST(root->right);
-        root->left=balanceBST(root->left);
+        root->left=rec(ll,i-1);
+        root->right=rec(i+1,rr);
         return root;
+    }
+    
+    TreeNode* balanceBST(TreeNode* ru) {
+        inorder(ru);
+        return rec(0,arr.size()-1);
     }
 };
