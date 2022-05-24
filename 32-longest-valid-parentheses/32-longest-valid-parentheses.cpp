@@ -9,7 +9,7 @@ public:
             }
             else{
                 int cur=0;
-                while(ss.size() && ss.top()>0){
+                if(ss.size() && ss.top()>0){
                     cur+=ss.top();
                     ss.pop();
                 }
