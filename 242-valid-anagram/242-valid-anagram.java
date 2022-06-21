@@ -5,6 +5,7 @@ class Solution {
         s=String.valueOf(c);
         return s;
     }
+    
     public boolean isAnagram(String s, String t) {
         if(s.length()!=t.length())
             return false;
