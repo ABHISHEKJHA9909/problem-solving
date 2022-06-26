@@ -1,23 +1,29 @@
 class Solution {
     public int trap(int[] arr) {
-        int i=0,j=arr.length-1;
-        int lmax=0,rmax=0,res=0;
+        int n=arr.length;
         
-        while(i<j){
-            if(arr[i]<arr[j]){
-                if(lmax<arr[i])
-                    lmax=arr[i];
-                else
-                    res+=lmax-arr[i];
-                i++;
-            }
-            else{
-                if(rmax<arr[j])
-                    rmax=arr[j];
-                else
-                    res+=rmax-arr[j];
-                j--;
-            }
+        int l[]=new int[n];
+        int r[]=new int[n];
+        for(int i=0,curr=arr[i];i<n;i++){
+            curr=Math.max(curr,arr[i]);
+            l[i]=curr;
+        }
+        for(int j=n-1,curr=arr[j];j>=0;j--){
+            curr=Math.max(curr,arr[j]);
+            r[j]=curr;
+        }
+        int res=0;
+        // for(int i:arr)
+        //     System.out.print(i+" ");
+        // System.out.println();
+        // for(int i:l)
+        //     System.out.print(i+" ");
+        // System.out.println();
+        // for(int i:r)
+        //     System.out.print(i+" ");
+        
+        for(int i=0;i<n;i++){
+            res+=Math.min(l[i],r[i])-arr[i];
         }
         return res;
     }
