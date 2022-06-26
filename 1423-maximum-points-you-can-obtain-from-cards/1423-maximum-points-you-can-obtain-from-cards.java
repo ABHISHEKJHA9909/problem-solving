@@ -1,15 +1,13 @@
 class Solution {
     public int maxScore(int[] arr, int k) {
         int n=arr.length;
-        int kk=k,i=n-k,j=i,ans=0,res=0;
-        while(j<n)
-            res+=arr[j++];
+        int res=0,ans=0;
+        for(int i=n-k;i<n;++i)
+            res+=arr[i];
         ans=Math.max(ans,res);
-        j=0;
-        while(kk!=0){
-            res+=arr[j++]-arr[i++];
+        for(int j=0,i=n-k;k!=0;++j,++i,--k){
+            res+=arr[j]-arr[i];
             ans=Math.max(ans,res);
-            kk--;
         }
         return ans;
     }
