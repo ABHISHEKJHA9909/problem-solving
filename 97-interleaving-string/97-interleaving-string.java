@@ -1,6 +1,6 @@
 class Solution {
     String s1,s2,s3;
-    int [][]dp=new int[101][101];
+    int [][]dp={};
     int search(int i,int j,int k){
         if(k==s3.length())
             return 1;
@@ -21,7 +21,8 @@ class Solution {
         s1=s11;
         s2=s22;
         s3=s33;
-        for(int i=0;i<101;i++)for(int j=0;j<101;j++)dp[i][j]=-1;
+        dp=new int[s1.length()+1][s2.length()+1];
+        for(int i=0;i<s1.length()+1;i++)for(int j=0;j<s2.length()+1;j++)dp[i][j]=-1;
         if(s1.length()+s2.length()==s3.length())
             return search(0,0,0)==1;
         return false;
