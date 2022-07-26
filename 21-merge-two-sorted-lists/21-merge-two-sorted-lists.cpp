@@ -15,16 +15,17 @@ public:
         ListNode *dummy=node;
         
         while(list1!=NULL && list2!=NULL){
-            ListNode* new_node;
+            
             if(list1->val<list2->val){
-                new_node=new ListNode(list1->val);
+                node->next=list1;
                 list1=list1->next;
             }
+            
             else{
-                new_node=new ListNode(list2->val);
+                node->next=list2;
                 list2=list2->next;
             }
-            node->next=new_node;
+            
             node=node->next;
         }
         
