@@ -3,7 +3,7 @@ public:
     int largestSubmatrix(vector<vector<int>>& matrix) {
         int r=matrix.size(),c=matrix[0].size();
         vector<int>arr(c,0);
-        
+        vector<int>curr(c);
         int res=0;
         
         for(int i=0;i<r;i++){
@@ -14,7 +14,7 @@ public:
                 arr[j]+=matrix[i][j];
             }
             
-            vector<int>curr=arr;
+            curr=arr;
             sort(curr.begin(),curr.end());
             for(int j=0;j<c;j++){
                 res=max(res,curr[j]*(c-j));
