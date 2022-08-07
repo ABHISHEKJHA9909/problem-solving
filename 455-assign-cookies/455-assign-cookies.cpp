@@ -8,7 +8,7 @@ public:
         while(i!=g.end() && j!=s.end()){
             if(*i<=*j)
                 ++i,++j,++ans;
-            else if(*i>*j)
+            else
                 j++;
         }
         return ans;
