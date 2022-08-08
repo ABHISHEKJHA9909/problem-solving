@@ -16,34 +16,43 @@ public:
 
 class Solution {
 public:
-    unordered_map<Node*,Node*>m;
-    
     Node* copyRandomList(Node* head) {
-        Node *n=new Node(-1);
-        Node *res=n;
-        m[NULL]=NULL;
-        Node *curr=new Node(-1);
-        curr->next=head;
-        head=curr;
+        Node* curr=head;
+        
         while(head!=NULL){
-            if(m.find(head->next)!=m.end()){
-                n->next=m[head->next];
-            }
-            else{
-                n->next=new Node(head->next->val);
-                m[head->next]=n->next;
-            }
-            if(m.find(head->random)!=m.end()){
-                n->random=m[head->random];
-            }
-            else{
-                n->random=new Node(head->random->val);
-                m[head->random]=n->random;
-            }
-            head=head->next;
-            n=n->next;
+            Node *next=head->next;
+            Node *new_Node=new Node(head->val);
+            head->next=new_Node;
+            new_Node->next=next;
+            head=next;
         }
         
-        return res->next;
+        head=curr;
+        
+        while(head!=NULL){
+            if(head->random!=NULL){
+                head->next->random=head->random->next;
+            }
+            head=head->next->next;
+        }
+        
+        head=curr;
+        
+        Node *res,*ans;
+        if(head!=NULL){
+            res=head->next;
+            ans=res;
+        }
+        
+        while(head!=NULL){
+            head->next=head->next->next;
+            if(res->next!=NULL){
+                res->next=res->next->next;
+                res=res->next;
+            }
+            head=head->next;
+        }
+        
+        return ans;
     }
 };
