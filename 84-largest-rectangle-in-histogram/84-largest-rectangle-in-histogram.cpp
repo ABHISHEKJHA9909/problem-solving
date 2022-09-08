@@ -2,25 +2,25 @@ class Solution {
 public:
     
     void nll(vector<int>&arr,int n,int* left){
-        stack<int>s;
+        int j;
         for(int i=0;i<n;i++){
-            while(s.size() && arr[s.top()]>=arr[i])
-                s.pop();
-            left[i]=s.size()?s.top():-1;
-            s.push(i);
+            j=i-1;
+            while(j>=0 && arr[j]>=arr[i])
+                j=left[j];
+            left[i]=j;
         }
     }
     
     
     void nlr(vector<int>&arr,int n,int *right){
-        stack<int>s;
+        int j;
         for(int i=n-1;i>=0;i--){
-            while(s.size() && arr[s.top()]>=arr[i])
-                s.pop();
-            right[i]=s.size()?s.top():n;
-            s.push(i);
+            j=i+1;
+            while(j<n && arr[j]>=arr[i])
+                j=right[j];
+            right[i]=j;
         }
-    }
+    }                                           
     
     int largestRectangleArea(vector<int>& arr) {
         int const  n=arr.size();
