@@ -1,15 +1,16 @@
 class Solution {
 public:
-    unordered_map<int,int>m;
-    
-    int rec(vector<int>& nums,int i){
-        if(i>=nums.size())
-            return 0;
-        if(m.find(i)!=m.end())
-            return m[i];
-        return m[i]=max(nums[i]+rec(nums,i+2),rec(nums,i+1));
-    }
     int rob(vector<int>& nums) {
-        return rec(nums,0);
+        int n=nums.size();
+        
+        if(n==1)
+            return nums[0];
+        nums[1]=max(nums[0],nums[1]);
+        
+        for(int i=2;i<n;i++){
+            nums[i]=max(nums[i]+nums[i-2],nums[i-1]);
+        }
+        
+        return nums[n-1];
     }
 };
