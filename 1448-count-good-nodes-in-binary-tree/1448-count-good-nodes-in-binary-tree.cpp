@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    int func(TreeNode* root,int mx){
+    int rec(TreeNode* root,int i){
         if(root==NULL)
             return 0;
-        return (root->val>=mx?1:0) + func(root->left,max(mx,root->val))+func(root->right,max(mx,root->val));
+        return (root->val>=i?1:0)+rec(root->left,max(i,root->val))+rec(root->right,max(i,root->val));
     }
     
     int goodNodes(TreeNode* root) {
-        return func(root,INT_MIN);
+        return rec(root,INT_MIN);
     }
 };
