@@ -21,7 +21,7 @@ public:
         c->is=true;
     }
     
-    bool dfs(node* c,string& word,int i){
+    bool dfs(node* &c,string& word,int i){
         if(i==word.size())
             return c->is;
         if(word[i]=='.'){
