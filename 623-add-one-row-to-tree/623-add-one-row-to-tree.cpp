@@ -11,25 +11,16 @@
  */
 class Solution {
 public:
-    void fun(TreeNode* root,int val,int d){
+    TreeNode* fun(TreeNode* root,int val,int d,int l){
+        if(d==1)
+            return new TreeNode(val,l==1?root:NULL,l==1?NULL:root);
         if(root==NULL)
-            return;
-        if(d==2){
-            TreeNode *curr= new TreeNode(val);
-            curr->right=root->right;
-            root->right=curr;
-            curr=new TreeNode(val);
-            curr->left=root->left;
-            root->left=curr;
-            return;
-        }
-        fun(root->left,val,d-1);
-        fun(root->right,val,d-1);
+            return NULL;
+        root->right=fun(root->right,val,d-1,0);
+        root->left=fun(root->left,val,d-1,1);
+        return root;
     }
     TreeNode* addOneRow(TreeNode* root, int val, int depth) {
-        if(depth==1)
-            return new TreeNode(val,root,NULL);
-        fun(root,val,depth);
-        return root;
+        return fun(root,val,depth,1);
     }
 };
