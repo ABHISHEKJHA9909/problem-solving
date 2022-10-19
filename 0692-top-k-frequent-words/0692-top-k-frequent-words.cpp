@@ -1,9 +1,11 @@
-
-bool comp(pair<int,string> &a,pair<int,string> &b){
-    if(a.first!=b.first)
+class compare{
+    public:
+    bool operator()(const pair<int,string> &a,const pair<int,string> &b){
+        if(a.first==b.first)
+            return a.second<b.second;
         return a.first>b.first;
-    return a.second<b.second;
-}
+    }
+};
 
 class Solution {
 public:
@@ -13,15 +15,21 @@ public:
         for(string s:words)
             m[s]++;
         
-        vector<pair<int,string>>v;
-        for(auto &[x,y]:m){
-            v.push_back({y,x});
+        priority_queue<pair<int,string>,vector<pair<int,string>>,compare>pq;
+        
+        for(auto [x,y]:m){
+            pq.push({y,x});
+            if(pq.size()>k)
+                pq.pop();
         }
-        sort(v.begin(),v.end(),comp);
         
         vector<string>res;
-        for(int i=0;i<k;i++)
-            res.push_back(v[i].second);
+        
+        while(pq.size()){
+            res.push_back(pq.top().second);
+            pq.pop();
+        }
+        reverse(res.begin(),res.end());
         
         return res;
     }
