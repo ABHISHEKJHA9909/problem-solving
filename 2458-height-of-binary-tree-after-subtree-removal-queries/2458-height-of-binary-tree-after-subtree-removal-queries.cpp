@@ -48,7 +48,6 @@ public:
                 else{
                     res.push_back(h-m[l].back()-1);
                 }
-                
             }
         }
         
