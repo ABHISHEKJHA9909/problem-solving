@@ -7,7 +7,7 @@ public:
             cnt[c]++;
         }
         
-        sort(s.begin(),s.end(),[this](char a,char b){
+        sort(s.begin(),s.end(),[this](char& a,char& b){
             if(cnt[a]==cnt[b])
                 return a>b;
             return cnt[a]>cnt[b];
