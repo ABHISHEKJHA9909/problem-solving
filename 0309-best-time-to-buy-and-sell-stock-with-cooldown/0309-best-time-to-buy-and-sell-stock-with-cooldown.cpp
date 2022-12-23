@@ -2,7 +2,7 @@ class Solution {
 public:
     map<pair<int,int>,int>m;
     
-    int rec(vector<int>arr,int i,int curr){
+    int rec(vector<int>& arr,int i,int curr){
         if(i>=arr.size())
             return 0;
         if(m.find({i,curr})!=m.end())
