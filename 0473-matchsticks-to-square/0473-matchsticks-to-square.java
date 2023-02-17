@@ -6,7 +6,7 @@ class Solution {
             return true;
         }
         for(int j=0;j<4;j++){
-            if(sum[j]+arr[i]>target)
+            if(sum[j]+arr[i]>target || (j>0 && sum[j]==sum[j-1]))
                 continue;
             sum[j]+=arr[i];
             if(rec(arr,i-1,sum))
