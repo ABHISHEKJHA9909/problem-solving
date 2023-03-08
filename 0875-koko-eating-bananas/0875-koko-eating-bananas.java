@@ -9,6 +9,8 @@ class Solution {
             long curr=0;
             for(int k:piles){
                 curr+=((k+mid-1)/mid);
+                if(curr>h)
+                    break;
             }
             if(curr<=h){
                 res=mid;
