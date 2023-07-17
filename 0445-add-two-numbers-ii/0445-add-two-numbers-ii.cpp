@@ -10,47 +10,46 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* curr){
-        ListNode* prev=NULL,* next;
-        
-        while(curr!=NULL){
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
+    int len(ListNode* node){
+        int res=0;
+        while(node!=NULL){
+            res++;
+            node=node->next;
         }
-        
-        return prev;
+        return res;
     }
     
-    ListNode* add(ListNode* l1,ListNode* l2){
-        ListNode *res=new ListNode(-1);
-        ListNode * dummy=res;
-        int c=0;
-        
-        while(l1||l2||c){
-            int x=c;
-            if(l1){
-                x+=l1->val;
-                l1=l1->next;
-            }
-            if(l2){
-                x+=l2->val;
-                l2=l2->next;
-            }
-            c=x/10;
-            x=x%10;
-            res->next=new ListNode(x);
-            res=res->next;
+    ListNode* add_before(ListNode* node,int n,int num){
+        while(n--){
+            ListNode* newNode=new ListNode(num);
+            newNode->next=node;
+            node=newNode;
         }
+        return node;
+    }
+    
+    int add(ListNode* l1,ListNode* l2){
+        if(l1==NULL)
+            return 0;
         
-        return reverse(dummy->next);
+        int carry=add(l1->next,l2->next);
+        l1->val+=(l2->val+carry);
+        carry=l1->val/10;
+        l1->val=l1->val%10;
+        return carry;
     }
     
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        l1=reverse(l1);
-        l2=reverse(l2);
+        int n=len(l1),m=len(l2);
+        if(n<m){
+            swap(n,m);
+            swap(l1,l2);
+        }
         
-        return add(l1,l2);
+        l2=add_before(l2,n-m,0);
+        
+        if(add(l1,l2))
+            return add_before(l1,1,1);
+        return l1;
     }
 };
