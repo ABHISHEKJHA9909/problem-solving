@@ -1,14 +1,38 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices, int fee) {
-        int x=0,y=INT_MIN;
+    map<pair<int,int>,int>m;
+    
+    int rec(int i,bool canBuy,int fee,vector<int>& arr){
+        if(i==arr.size())
+            return 0;
+        if(m.find({i,canBuy})!=m.end())
+            return m[{i,canBuy}];
+        int idle=rec(i+1,canBuy,fee,arr);
         
-        for(int i=0;i<prices.size();i++){
-            int tmp=x;
-            x=max(x,y+prices[i]);
-            y=max(y,x-prices[i]-fee);
+        if(canBuy){
+            int buy=-arr[i]+rec(i+1,!canBuy,fee,arr);
+            return m[{i,canBuy}]=max(idle,buy);
+        }
+        else{
+            int sell=+arr[i]-fee+rec(i+1,!canBuy,fee,arr);
+            return m[{i,canBuy}]=max(idle,sell);
         }
         
-        return x;
+        return 0;
+    }
+    
+    int maxProfit(vector<int>& prices, int fee) {
+        return rec(0,true,fee,prices);
     }
 };
+
+/**
+
+y=max(y,x-i-fee)
+x=max(x,y+i)
+
+    1 ,  3,  7,  5,  10,  3
+y  -4   -4  -4  -4   -2               
+x   0    0   3   4   6           
+
+**/
