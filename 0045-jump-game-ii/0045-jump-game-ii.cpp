@@ -1,21 +1,17 @@
 class Solution {
 public:
-    unordered_map<int,int>m;
     
-    int rec(int i,vector<int>& nums){
-        if(i>=nums.size()-1)
-            return 0;
-        if(m.find(i)!=m.end())
-            return m[i];
-        int x=1e5;
+    int jump(vector<int>& arr) {
+        int n=arr.size();
+        vector<int>dp(n,1e5);
+        dp[0]=0;
         
-        for(int j=i+1;j<=i+nums[i];j++)
-            x=min(x,1+rec(j,nums));
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<=i+arr[i] && j<n ;j++){
+                dp[j]=min(dp[j],1+dp[i]);
+            }
+        }
         
-        return m[i]=x;
-    }
-    
-    int jump(vector<int>& nums) {
-        return rec(0,nums);
+        return dp[n-1];
     }
 };
