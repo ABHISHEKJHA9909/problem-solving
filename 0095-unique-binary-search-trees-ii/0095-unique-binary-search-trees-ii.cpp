@@ -11,11 +11,15 @@
  */
 class Solution {
 public:
+    map<pair<int,int>,vector<TreeNode*>>m;
+    
     vector<TreeNode*> rec(int i,int j){
         if(i==j){
             return {new TreeNode(i)};
         }
         
+        if(m.find({i,j})!=m.end())
+            return m[{i,j}];
         vector<TreeNode*>res;
         
         for(int k=i;k<=j;k++){
@@ -48,7 +52,7 @@ public:
             }
         }
         
-        return res;
+        return m[{i,j}]=res;
     }
     vector<TreeNode*> generateTrees(int n) {
         return rec(1,n);
