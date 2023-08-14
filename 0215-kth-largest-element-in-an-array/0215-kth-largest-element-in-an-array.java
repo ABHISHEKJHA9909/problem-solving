@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             pq.add(nums[i]);
             if(pq.size()>k){
-                pq.poll();
+                pq.remove();
             }
         }
         
