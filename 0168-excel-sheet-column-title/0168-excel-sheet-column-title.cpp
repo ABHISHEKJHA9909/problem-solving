@@ -4,10 +4,12 @@ public:
         string res="";
         
         while(n!=0){
-            res=char('A'+(n-1)%26)+res;
-            n=(n-1)/26;
+            --n;
+            res=res+(char)(65+n%26);
+            n/=26;
         }
         
+        reverse(res.begin(),res.end());
         return res;
     }
 };
