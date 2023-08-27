@@ -5,7 +5,7 @@ class Solution {
             return true;
         if(arr[1]!=1)
             return false;
-        unordered_map<int,set<int>>m;
+        unordered_map<int,unordered_set<int>>m;
         m[1].insert(1);
         for(int i=2;i<arr.size();i++){
             m[arr[i]]={};
