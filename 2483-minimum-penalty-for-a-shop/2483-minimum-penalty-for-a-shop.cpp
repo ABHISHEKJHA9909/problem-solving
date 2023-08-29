@@ -10,13 +10,11 @@ public:
         
         int res=-1,panelty=INT_MAX;
         int no_cust=0;
-        int current_panelty=0;
         
         for(int i=0;i<s.size();i++){
-            current_panelty=(cust+no_cust);
             
-            if(panelty>current_panelty){
-                panelty=current_panelty;
+            if(panelty>cust+no_cust){
+                panelty=cust+no_cust;
                 res=i;
             }
             
@@ -26,9 +24,8 @@ public:
                 ++no_cust;
         }
         
-        current_panelty=(cust+no_cust);
-        if(panelty>current_panelty){
-                panelty=current_panelty;
+        if(panelty>cust+no_cust){
+                panelty=cust+no_cust;
                 res=s.size();
         }
         
