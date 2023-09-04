@@ -18,10 +18,10 @@ class Solution {
         ListNode e_start=e;
         
         ListNode node=head.next.next;
-        Boolean parity=false;
+        Boolean parity=true;
         
         while(node!=null){
-            if(!parity){
+            if(parity){
                 o.next=node;
                 o=o.next;
             }
