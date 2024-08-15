@@ -1,29 +1,11 @@
 class Solution {
-    private String[] stringToArray(String s){
-        List<String> lis=new ArrayList<>();
-        int len=s.length();
-        String curr="";
-        
-        for(int i=0;i<len;i++){
-            if(s.charAt(i)==' '){
-                lis.add(curr);
-                curr="";
-                continue;
-            }
-            curr+=s.charAt(i);
-        }
-        
-        lis.add(curr);
-        
-        return lis.toArray(new String[0]);
-    }
     
     
     public boolean wordPattern(String pattern, String s) {
         Map<Character,String>m1=new HashMap<>();
         Map<String,Character>m2=new HashMap<>();
         
-        String arr[]=stringToArray(s);
+        String arr[]=s.split(" ");
         
         int len=pattern.length();
         
