@@ -17,9 +17,6 @@ class Solution {
             }
         
         }
-        if(sum<=1){
-            return sum;
-        }
         return (sum+1)/2;
     }
 }
