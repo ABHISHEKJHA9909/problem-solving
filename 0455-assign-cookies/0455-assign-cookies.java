@@ -8,15 +8,15 @@ class Solution {
         
         int satisfy=0;
         
-        for(int i=0,j=0;i<gLen ;++i){
-            while(j<sLen && s[j]<g[i]){
+        for(int i=0,j=0;i<gLen &&j<sLen;){
+            if(s[j]>=g[i]){
+                ++satisfy;
+                ++j;
+                ++i;
+            }
+            else if(s[j] < g[i]){
                 ++j;
             }
-            if(j==sLen){
-                break;
-            }
-            ++satisfy;
-            ++j;
         }
             
         return satisfy;
