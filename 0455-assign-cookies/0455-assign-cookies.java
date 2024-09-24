@@ -9,13 +9,13 @@ class Solution {
         int satisfy=0;
         
         for(int i=0,j=0;i<gLen &&j<sLen;){
-            if(s[j]>=g[i]){
+            if(s[j]<g[i]){
+                ++j;
+            }
+            else{
                 ++satisfy;
                 ++j;
                 ++i;
-            }
-            else if(s[j] < g[i]){
-                ++j;
             }
         }
             
