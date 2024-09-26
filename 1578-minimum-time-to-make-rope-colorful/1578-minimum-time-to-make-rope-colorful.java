@@ -5,14 +5,13 @@ class Solution {
         int max=arr[0],sum=arr[0];
         
         for(int i=1;i<len;++i){
-            if(s.charAt(i)==s.charAt(i-1)){
-                sum+=arr[i];
-                max=Math.max(max,arr[i]);
-                continue;
+            if(s.charAt(i)!=s.charAt(i-1)){
+                res+=(sum-max);
+                sum=0;
+                max=arr[i];
             }
-            res+=(sum-max);
-            sum=arr[i];
-            max=arr[i];
+            sum+=arr[i];
+            max=max>arr[i]?max:arr[i];
             // System.out.println(res);
         }
         
